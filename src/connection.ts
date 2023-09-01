@@ -133,6 +133,7 @@ export class Connection extends EventEmitter {
    */
   private onConnect() {
     this.connected = true;
+    debug("Connection Established");
     this.emit("connect");
     this.setTimeout();
   }
@@ -141,6 +142,7 @@ export class Connection extends EventEmitter {
    * @private
    */
   private clearPending(err: Error) {
+    debug("Clear Pending");
     this.pending.forEach(({ reject }) => reject(err));
   }
 
