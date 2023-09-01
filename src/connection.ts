@@ -115,7 +115,7 @@ export class Connection extends EventEmitter {
    */
   async open(): Promise<Greeting> {
     if (this.connected) throw new Error("already connected!");
-    debug("connecting");
+    //debug("connecting");
 
     const receiveGreetingResponse = new Promise((resolve, reject) => {
       this.pending.unshift({ resolve, reject });
@@ -148,12 +148,11 @@ export class Connection extends EventEmitter {
    * @private
    */
   private onClose() {
-    debug("close");
-
     this.closing = false;
     this.connected = false;
 
     this.emit("close");
+    debug("Connection closed");
 
     // dead letters?
     this.clearPending(this.lastError || new Error("Connection closed"));
@@ -201,13 +200,11 @@ export class Connection extends EventEmitter {
    */
   send(command: Command): Promise<string> {
     const commandString = command.join(" ");
-    debug("SEND: %s", commandString);
-
+    debug("SEND command to Server");
     return new Promise((resolve, reject) => {
       this.socket.write(`${commandString}\r\n`);
       this.pending.unshift({
         resolve: (message) => {
-          debug("client=%o, server=%o", commandString, message);
           resolve(message);
         },
         reject,
@@ -219,6 +216,7 @@ export class Connection extends EventEmitter {
    * @private
    */
   private onError(err: Error) {
+    debug("ERROR %s", err);
     this.lastError = err;
     this.emit("error", err);
     this.close();
@@ -230,6 +228,7 @@ export class Connection extends EventEmitter {
    */
   async close(): Promise<void> {
     if (this.closing) return;
+    debug("Closing Connection");
     this.closing = true;
     return new Promise<void>((resolve) =>
       this.socket
