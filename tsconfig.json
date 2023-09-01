@@ -19,5 +19,4 @@
     "noImplicitThis": true,
     "typeRoots": ["./node_modules/@types", "./src/@types"]
   },
-  "include": ["src/**/*", "types"],
 }
