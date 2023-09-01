@@ -40,6 +40,7 @@ jspm_packages
 
 .DS_Store
 lib
+dist
 
 issues
 
