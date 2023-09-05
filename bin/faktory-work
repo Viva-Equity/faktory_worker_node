@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const faktory = require("../lib/faktory");
-const { options } = require("../lib/cli");
+const faktory = require("../dist/faktory");
+const { options } = require("../dist/cli");
 
 faktory.work(options).catch((error) => {
   console.error(error);

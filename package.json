@@ -3,8 +3,8 @@
   "version": "4.5.1",
   "description": "A faktory worker framework for node apps",
   "type": "commonjs",
-  "main": "./dist/faktory.js",
-  "types": "./dist/faktory.d.ts",
+  "main": "dist/faktory.js",
+  "types": "dist/faktory.d.ts",
   "files": [
     "dist/**/*"
   ],
@@ -13,15 +13,15 @@
   "scripts": {
     "watch": "npm run build -- -w",
     "build": "npm run clean && tsc",
-    "clean": "rm -rf lib/*",
+    "clean": "rm -rf dist/*",
     "test": "npm run build && npm run test:unit",
     "test:unit": "nyc --cache ava src/__tests__/**/*",
     "test:integration": "nyc --cache ava src/__tests__/integration/*",
     "test:watch": "npm run test -- -w",
     "coverage": "nyc report --reporter=html",
     "lint": "eslint . --ext .ts",
-    "htmldocs": "npm run build && jsdoc . lib -d docs --readme README.md --pedantic",
-    "docs": "npm run build && jsdoc2md --files lib/*.js --template docs/template.hbs > docs/api.md",
+    "htmldocs": "npm run build && jsdoc . dist -d docs --readme README.md --pedantic",
+    "docs": "npm run build && jsdoc2md --files dist/*.js --template docs/template.hbs > docs/api.md",
     "preversion": "npm run lint && npm run test && npm run docs",
     "version": "git add docs/ package.json",
     "postversion": "git push && git push --tags"
