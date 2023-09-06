@@ -48,13 +48,13 @@
     "timeout": "5s",
     "typescript": {
       "rewritePaths": {
-        "src/": "lib/"
+        "src/": "dist/"
       },
       "compile": "tsc"
     }
   },
   "engines": {
-    "node": ">=14"
+    "node": "^16.18.1 || ^18.12.1"
   },
   "devDependencies": {
     "@ava/typescript": "3.0.1",
