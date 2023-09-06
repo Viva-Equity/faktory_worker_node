@@ -23,6 +23,7 @@
     "htmldocs": "npm run build && jsdoc . dist -d docs --readme README.md --pedantic",
     "docs": "npm run build && jsdoc2md --files dist/*.js --template docs/template.hbs > docs/api.md",
     "preversion": "npm run lint && npm run test && npm run docs",
+    "prepack": "npm run build",
     "version": "git add docs/ package.json",
     "postversion": "git push && git push --tags"
   },
